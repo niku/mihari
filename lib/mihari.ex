@@ -12,6 +12,14 @@ defmodule Mihari do
     Supervisor.start_child(@supervisor, [args])
   end
 
+  @doc """
+  Builds config
+  """
+  @spec build([term]) :: Mihari.Config.t
+  def build(config) do
+    struct(Mihari.Config, config)
+  end
+
   ## Server API
 
   @doc false

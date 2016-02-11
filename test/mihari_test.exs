@@ -11,4 +11,8 @@ defmodule MihariTest do
   test "Starts a watcher" do
     assert {:ok, mihari} = Mihari.start([])
   end
+
+  test "Builds watching configuration" do
+    assert Mihari.build(name: "foo") == %Mihari.Config{name: "foo"}
+  end
 end
