@@ -13,6 +13,15 @@ defmodule MihariTest do
   end
 
   test "Builds watching configuration" do
-    assert Mihari.build(name: "foo") == %Mihari.Config{name: "foo"}
+    config = Mihari.build(name: "foo",
+                          input: {:http, [uri: URI.parse("http://example.com"), interval: 1000]},
+                          output: {:stdout, [] })
+    assert config == %Mihari.Config{
+      name: "foo",
+      input: %Mihari.Plugins.Input.Http.Config{
+        uri: URI.parse("http://example.com"),
+        interval: 1000},
+      output: %Mihari.Plugins.Output.Stdout.Config{}
+    }
   end
 end

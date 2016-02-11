@@ -18,6 +18,14 @@ defmodule Mihari do
   @spec build([term]) :: Mihari.Config.t
   def build(config) do
     struct(Mihari.Config, config)
+    |> Map.update!(:input, fn {type, value} ->
+      module = Module.concat([Mihari.Plugins.Input, Macro.camelize(Atom.to_string(type)), Config])
+      struct(module, value)
+    end)
+    |> Map.update!(:output, fn {type, value} ->
+      module = Module.concat([Mihari.Plugins.Output, Macro.camelize(Atom.to_string(type)), Config])
+      struct(module, value)
+    end)
   end
 
   ## Server API
