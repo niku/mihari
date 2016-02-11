@@ -1,11 +1,13 @@
 defmodule Mihari do
   use Application
 
+  @supervisor Mihari.Supervisor
+
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
     children = [
-      supervisor(Mihari.Supervisor, [])
+      supervisor(@supervisor, [])
     ]
 
     opts = [strategy: :one_for_one]
