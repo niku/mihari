@@ -3,6 +3,18 @@ defmodule Mihari do
 
   @supervisor Mihari.Supervisor
 
+  ## Client API
+
+  @doc """
+  Starts a watcher(mihari).
+  """
+  def start(args) do
+    Supervisor.start_child(@supervisor, [args])
+  end
+
+  ## Server API
+
+  @doc false
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
