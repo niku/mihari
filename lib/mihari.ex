@@ -8,8 +8,8 @@ defmodule Mihari do
   @doc """
   Starts a watcher(mihari).
   """
-  def start(args) do
-    Supervisor.start_child(@supervisor, [args])
+  def start(%Mihari.Config{} = config) do
+    Supervisor.start_child(@supervisor, [config])
   end
 
   @doc """

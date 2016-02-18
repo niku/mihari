@@ -1,7 +1,7 @@
 defmodule Mihari.Worker do
   use GenServer
 
-  def start_link(args, options \\ []) do
-    GenServer.start_link(__MODULE__, args, options)
+  def start_link(%Mihari.Config{} = config, options \\ []) do
+    GenServer.start_link(__MODULE__, config, options)
   end
 end
